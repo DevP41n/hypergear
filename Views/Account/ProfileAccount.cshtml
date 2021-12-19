@@ -1,0 +1,53 @@
+﻿@model HyperGear.Models.KhachHang
+
+@{
+    ViewBag.Title = "ProfileAccount";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="container container-240">
+    <div class="myaccount trackorder">
+        <ul class="breadcrumb v3">
+            <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+            <li class="active">Tài Khoản</li>
+        </ul>
+        <div class="row flex pd">
+            <div class="account-element bd-7">
+                <div class="cmt-title text-center abs">
+                    <h1 class="page-title v6">Tài Khoản</h1>
+                </div>
+                <div class="page-content">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.MaKH)
+                        @Html.HiddenFor(model => model.Matkhau)
+                        @Html.HiddenFor(model => model.ConfirmPassword)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input type="text" id="Taikhoan" class="form-control bdr" name="Taikhoan" value="@Model.Taikhoan" readonly>
+                            <label>Họ Tên</label>
+                            <input type="text" id="HoTen" class="form-control bdr" name="HoTen" value="@Model.HoTen">
+                            <label>Email</label>
+                            <input type="email" id="Email" class="form-control bdr" name="Email" value="@Model.Email">
+                            <label>Số điện thoại</label>
+                            <input type="text" id="DienthoaiKH" class="form-control bdr" name="DienthoaiKH" value="@Model.DienthoaiKH">
+                            <label>Địa chỉ</label>
+                            <input type="text" id="DiachiKH" class="form-control bdr" name="DiachiKH" value="@Model.DiachiKH">
+                        </div>
+                        <div class="flex justify-center">
+                            <button type="submit" class="btn btn-submit btn-gradient">
+                                Lưu thông tin
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<HyperGear.Models.SanPham>
+@{
+    ViewBag.Title = "ShopFull";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="product-tab">
+    <div class="container container-240">
+        <div class="e-cat">
+            <div class="pd-banner">
+                <br />
+                <a href="#" class="image-bd effect_img2"><img src="~/images/banner/BG-6.png" alt="" class="img-reponsive"></a>
+                <br />
+            </div>
+            @foreach (var item in ViewBag.Menu)
+            {
+                var idmenu = item.MaMn;
+                <div class="bestseller">
+                    <div class="ecome-heading style3 spc3">
+                        <h1>@item.TenMn</h1>
+                        <a href="@Url.Action("LstMenu","Home", new { id = item.Slug})" class="btn-show">Xem Thêm<i class="ion-ios-arrow-forward"></i></a>
+                    </div>
+                    <div class="tab-content">
+                        <div id="feature" class="tab-pane fade in active">
+                            <div class="product-tab-pd js-multiple-row2">
+                                @foreach (var items in ViewBag.DanhMuc)
+                                {
+                                    var iddm = items.MaDM;
+                                    if (items.MaMn == idmenu)
+                                    {
+                                        foreach (var itemzs in Model.Where(m => m.MaDM == iddm && m.Status == 1))
+                                        {
+
+                                            <div class="product-item">
+                                                <div class="pd-bd product-inner">
+                                                    <div class="product-img">
+                                                        <a href="@Url.Action("Details","Home", new { id = itemzs.Slug})"><img src="~/images/product/@itemzs.Anh" alt="" class="img-reponsive"></a>
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <div class="color-group">
+                                                        </div>
+                                                        <p class="product-cate">@itemzs.DanhMuc.TenDM</p>
+                                                        <h3 class="product-title"><a href="@Url.Action("Details","Home", new { id = itemzs.Slug})">@itemzs.TenSP</a></h3>
+                                                        <div class="product-bottom">
+                                                            <div class="product-price" style="color:red;"><span>@Html.Raw(String.Format("{0:0,0}₫", @itemzs.Gia))</span></div>
+                                                            <a href="#" class="btn-icon btn-view">
+                                                                <span class="icon-bg icon-view"></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-bottom-group">
+                                                            <a class="btn-icon">
+                                                            </a>
+                                                            <a href="@Url.Action("AddCart","ProdOrder", new { @oMaSP = itemzs.MaSP , @strURL = Request.Url.ToString() })" class="btn-add-cart">
+                                                                <span class="icon-bg icon-cart"></span>
+                                                            </a>
+                                                            <a href="#" class="btn-icon">
+                                                                <span class="icon-bg icon-wishlist"></span>
+                                                            </a>
+                                                            <a href="#" class="btn-icon">
+                                                                <span class="icon-bg icon-compare"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-button-group">
+                                                        <a href="@Url.Action("AddCart","ProdOrder", new { @oMaSP = itemzs.MaSP , @strURL = Request.Url.ToString() })" class="btn-add-cart">
+                                                            <span class="icon-bg icon-cart"></span>
+                                                        </a>
+                                                        <a href="#" class="btn-icon">
+                                                            <span class="icon-bg icon-wishlist"></span>
+                                                        </a>
+                                                        <a href="#" class="btn-icon">
+                                                            <span class="icon-bg icon-compare"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

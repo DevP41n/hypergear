@@ -1,0 +1,213 @@
+﻿@model HyperGear.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+
+<!--content-->
+<div class="container container-240">
+    <div class="single-product-detail product-bundle product-aff">
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+            <li class="active">@Model.DanhMuc.TenDM</li>
+            <li class="active">@Model.TenSP </li>
+        </ul>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+
+                <div class="flex">
+
+
+                    <div class="product-images">
+                        <div class="main-img js-product-slider">
+                            <a href="#" class="hover-images effect"><img src="~/images/product/@Model.Anh" alt="photo" class="img-reponsive"></a>
+                            <a href="#" class="hover-images effect"><img src="/template/web/img/single/sony2.jpg" alt="photo" class="img-reponsive"></a>
+                            <a href="#" class="hover-images effect"><img src="/template/web/img/single/sony3.jpg" alt="photo" class="img-reponsive"></a>
+                            <a href="#" class="hover-images effect"><img src="/template/web/img/single/sony4.jpg" alt="photo" class="img-reponsive"></a>
+                            <a href="#" class="hover-images effect"><img src="/template/web/img/single/sony4.jpg" alt="photo" class="img-reponsive"></a>
+                            <a href="#" class="hover-images effect"><img src="/template/web/img/single/sony4.jpg" alt="photo" class="img-reponsive"></a>
+                        </div>
+                    </div>
+                    @*<div class="multiple-img-list-ver2 js-click-product">
+                            <div class="product-col">
+                                <div class="img active">
+                                    <img src="~/images/product/@Model.Anh" alt="photo" class="img-reponsive">
+                                </div>
+                            </div>
+                            <div class="product-col">
+                                <div class="img">
+                                    <img src="/template/web/img/single/sony2.jpg" alt="images" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="product-col">
+                                <div class="img">
+                                    <img src="/template/web/img/single/sony3.jpg" alt="images" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="product-col">
+                                <div class="img">
+                                    <img src="/template/web/img/single/sony4.jpg" alt="images" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="product-col">
+                                <div class="img">
+                                    <img src="/template/web/img/single/sony4.jpg" alt="images" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="product-col">
+                                <div class="img">
+                                    <img src="/template/web/img/single/sony4.jpg" alt="images" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+
+
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="single-flex">
+                    <div class="single-product-info product-info product-grid-v2 s-50">
+                        <p class="product-cate">@Model.DanhMuc.Menu.TenMn</p>
+                        <div class="product-rating">
+                            <span class="star star-5"></span>
+                            <span class="star star-4"></span>
+                            <span class="star star-3"></span>
+                            <span class="star star-2"></span>
+                            <span class="star star-1"></span>
+                            <div class="number-rating">( 896 reviews )</div>
+                        </div>
+                        <h3 class="product-title"><a href="#">@Model.TenSP </a></h3>
+                        <div class="product-price">
+                            <span>@Html.Raw(String.Format("{0:0,0}₫", @Model.Gia))</span>
+                        </div>
+                        @if (Model.Soluongton > 0)
+                        {
+                            <div class="availability">
+                                <p class="product-inventory"> <label>Trạng Thái : </label><span> Còn hàng</span></p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="availability">
+                                <p class="product-inventory"> <label>Trạng Thái : </label><span style="color:red"> Hết hàng</span></p>
+                            </div>
+                        }
+                        <div class="product-brand">
+                            <p>Thương hiệu : @Model.DanhMuc.TenDM</p>
+                            @*<img src="/template/web/img/single/sony_brand.png" alt="">*@
+                        </div>
+                        <div class="product-sku">
+                            <label>Còn :</label><span> @Model.Soluongton sản phẩm</span>
+                        </div>
+                        <div class="short-desc">
+
+                            <div class="desc-list">
+                                @Html.Raw(Model.Mota)
+                            </div>
+                        </div>
+                        @if (Model.Soluongton > 0)
+                        {
+                            using (Html.BeginForm("AddCart", "ProdOrder", new { @oMaSP = @Model.MaSP, @strURL = Request.Url.ToString(), @class = "form_newsletter" }))
+                            {
+
+
+                                <div class="single-product-button-group">
+                                    <input type="number" id="soluong" name="soluong" value="1" class="newsletter-input form-control">
+                                    <button id="subscribe" class="button_mini btn btn-gradient" type="submit">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            <div class="single-product-button-group">
+                                <div class="e-btn cart-qtt no-qtt">
+                                    <a class="btn-add-cart btn-outofstock">Hết hàng </a>
+                                </div>
+                                <a class="e-btn btn-icon">
+                                    <span class="icon-bg icon-wishlist"></span>
+                                </a>
+                            </div>
+                        }
+
+
+
+                    </div>
+                    <div class="single-product-feature s-50 hidden-xs hidden-sm">
+                        <div class="bd-7">
+                            <div class="single-feature-box">
+                                <div class="single-feature-img">
+                                    <img src="/template/web/img/feature/credit-card2.png" alt="">
+                                </div>
+                                <div class="single-feature-info">
+                                    <h3>Thanh toán an toàn</h3>
+                                    <p>Thanh toán bằng các phương thức thanh toán an toàn và phổ biến nhất trên thế giới.</p>
+                                </div>
+                            </div>
+
+                            <div class="single-feature-box">
+                                <div class="single-feature-img">
+                                    <img src="/template/web/img/feature/safety2.png" alt="">
+                                </div>
+                                <div class="single-feature-info">
+                                    <h3>Bảo mật</h3>
+                                    <p>Bảo mật thông tin mua hàng.</p>
+                                </div>
+                            </div>
+
+                            <div class="single-feature-box">
+                                <div class="single-feature-img">
+                                    <img src="/template/web/img/feature/truck2.png" alt="">
+                                </div>
+                                <div class="single-feature-info">
+                                    <h3>Vận chuyển toàn quốc</h3>
+                                    <p>Miễn phí giao hàng cho 64 tỉnh thành.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hot-line e-gradient">
+                            <p>Liên Hệ</p>
+                            <div class="flex align-center tele">
+                                <img src="/template/web/img/feature/hotline.png" alt="">
+                                <div class="phone-number">
+                                    <p>(+123) 456 789 </p>
+                                    <p>(+123) 666 888</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-product-tab bd-7">
+            <div class="cmt-title text-center abs">
+                <ul class="nav nav-tabs text-center">
+                    <li class="active"><a data-toggle="pill" href="#desc">Chi tiết sản phẩm</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="desc" class="tab-pane fade in active">
+                    <div class="entry-content" style="margin-left:20px; margin-right:20px;">
+
+                        @Html.Raw(Model.ChiTiet)
+
+                    </div>
+
+                  
+                    </br>
+                </div>
+            </div>
+            @*// Comment*@
+            <div class="fb-like" data-href="https://localhost:44313/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+            @*//Like*@
+            <div class="fb-comments" data-href="@Request.Url.GetLeftPart(UriPartial.Path)" data-width="100%" data-numposts="">
+            </div>
+
+        </div>
+    </div>
+
+</div>

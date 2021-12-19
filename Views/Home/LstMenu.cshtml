@@ -1,0 +1,133 @@
+﻿@using HyperGear.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
+@{
+    ViewBag.Title = "LstMenu";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+
+<div class="container container-240">
+    <div class="e-product">
+        <div class="pd-banner">
+            <br />
+            <a href="#" class="image-bd effect_img2"><img src="~/images/banner/BG-6.png" alt="" class="img-reponsive"></a>
+        </div>
+
+        <div class="pd-top">
+            <h1 class="title">Danh sách sản phẩm theo "@ViewBag.Mn"</h1> 
+            <div class="show-element"><span>Showing 1–15 of 20 results</span></div>
+        </div>
+        <div class="pd-middle">
+            <div class="view-mode view-group">
+                <a class="grid-icon col active"><img src="~/template/web/img/grid.png" alt=""></a>
+                <a class="grid-icon col2"><img src="~/template/web/img/grid2.png" alt=""></a>
+                <a class="list-icon list"><img src="~/template/web/img/list.png" alt=""></a>
+            </div>
+        </div>
+        <div class="product-collection-grid product-grid spc1">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 product-item">
+                        <div class="pd-bd product-inner">
+                            <div class="product-img">
+                                <a href="@Url.Action("Details","Home", new { id = item.Slug})"><img src="~/images/product/@item.Anh" alt="" class="img-reponsive"></a>
+                            </div>
+                            <div class="product-info">
+                                <div class="element-list element-list-left">
+                                    <div class="desc-list">
+                                        @Html.Raw(item.Mota)
+                                    </div>
+                                </div>
+                                <div class="element-list element-list-middle">
+                                    <div class="product-rating bd-rating">
+                                        <span class="star star-5"></span>
+                                        <span class="star star-4"></span>
+                                        <span class="star star-3"></span>
+                                        <span class="star star-2"></span>
+                                        <span class="star star-1"></span>
+                                        <div class="number-rating">( 896 reviews )</div>
+                                    </div>
+                                    <p class="product-cate">Thương hiệu: @item.DanhMuc.TenDM</p>
+                                    <h3 class="product-title"><a href="@Url.Action("Details","Home", new { id = item.Slug})">@item.TenSP</a></h3>
+                                    <div class="product-bottom">
+                                        <div class="product-price" style="color: red"><span>@Html.Raw(String.Format("{0:0,0 ₫}", @item.Gia))</span></div>
+                                        <a href="#" class="btn-icon btn-view">
+                                            <span class="icon-bg icon-view"></span>
+                                        </a>
+                                    </div>
+                                    <div class="product-bottom-group">
+                                        <a href="@Url.Action("AddCart","ProdOrder", new { @oMaSP = item.MaSP , @strURL = Request.Url.ToString() })" class="btn-icon">
+                                            <span class="icon-bg icon-cart"></span>
+                                        </a>
+                                        <a href="#" class="btn-icon">
+                                            <span class="icon-bg icon-wishlist"></span>
+                                        </a>
+                                        <a href="#" class="btn-icon">
+                                            <span class="icon-bg icon-compare"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-button-group">
+                                <a href="@Url.Action("AddCart","ProdOrder", new { @oMaSP = item.MaSP , @strURL = Request.Url.ToString() })" class="btn-icon">
+                                    <span class="icon-bg icon-cart"></span>
+                                </a>
+                                <a href="#" class="btn-icon">
+                                    <span class="icon-bg icon-wishlist"></span>
+                                </a>
+                                <a href="#" class="btn-icon">
+                                    <span class="icon-bg icon-compare"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+        <div class="pd-middle space-v1">
+            <ul class="pagination">
+                @Html.PagedListPager(Model, page => Url.Action("lstDM", "Home", new { id = ViewBag.id, page = page }))
+            </ul>
+            <div class="pd-sort">
+                <div class="filter-sort">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="dropdown-label">Default sorting</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="manual">Featured</a></li>
+                            <li><a href="best-selling">Best Selling</a></li>
+                            <li><a href="title-ascending">Alphabetically, A-Z</a></li>
+                            <li><a href="title-descending">Alphabetically, A-Z</a></li>
+                            <li><a href="price-descending">Price, high to low</a></li>
+                            <li><a href="price-ascending">Price, low to high</a></li>
+                            <li><a href="created-ascending">Date, old to new</a></li>
+                            <li><a href="created-descending">Date, new to old</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="filter-show">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Show
+                            <span class="dropdown-label">12</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">12</a></li>
+                            <li><a href="#">24</a></li>
+                            <li><a href="#">36</a></li>
+                            <li><a href="#">48</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

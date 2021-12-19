@@ -1,0 +1,2 @@
+﻿@{ var makh = Convert.ToInt32(Session["MaKH"]);}
+<a href="@Url.Action("TrackOrder","Home", new { id = makh})"><img src="~/template/web/img/icon-track.png" alt=""><span>Theo dõi đơn hàng</span></a>

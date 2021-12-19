@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>@ViewBag.Title | HyperGear</title>
+    <link rel="stylesheet" href="~/template/web/css/owl.carousel.min.css">
+    <link rel="shortcut icon" href="~/template/web/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="~/template/web/css/slick.css">
+    <link rel="stylesheet" href="~/template/web/css/slick-theme.css">
+    <link rel="stylesheet" href="~/template/web/css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="~/template/web/css/style.css">
+    <!-- Icons Css -->
+    <link href="~/template/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!--toastr-->
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <!--icon social-->
+    <link href="~/template/web/css/css-social/social-bs.css" rel="stylesheet" />
+
+    <link href="~/template/web/css/css-social/font-awesome.css" rel="stylesheet" />
+    <!--custom-->
+    <link href="~/template/admin/custom/tableorder.css" rel="stylesheet" />
+
+    <!--custom-->
+    <style>
+        .header-search {
+            padding-left: 0px;
+        }
+    </style>
+
+</head>
+<body>
+    <!--comment-->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=192046392936010&autoLogAppEvents=1" nonce="wcx4xhPp"></script>
+    <!-- Facebook Like-->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=192046392936010&autoLogAppEvents=1" nonce="2nTyej74"></script>
+    <!-- end push menu-->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=192046392936010&autoLogAppEvents=1" nonce="sPPQzw8x"></script>
+    <!--page-->
+    <div class="wrappage">
+        <header id="header" class="header-v5">
+            <div class="header-top-banner">
+                <a href="#"><img src="~/images/banner/banner-ontop.png" width="1920" height="45" alt="" class="img-reponsive"></a>
+            </div>
+            <div class="topbar">
+                <div class="container container-240">
+                    <div class="row flex">
+                        <div class="col-md-6 col-sm-6 col-xs-4 flex-left">
+                            <div class="topbar-left">
+                                <div class="element element-store hidden-xs hidden-sm">
+                                    <a id="label1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="~/template/web/img/icon-map.png" alt="">
+                                        <span>Địa Chỉ</span>
+
+                                    </a>
+                                </div>
+                                <div class="element hidden-xs hidden-sm">
+                                    @if (Session["TenCus"] != null)
+                                    {
+                                        @Html.Action("_ViewOrder", "Home")
+                                    }
+                                </div>
+                                <div class="element element-account hidden-md hidden-lg">
+                                    <a href="#">My Account</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-8 flex-right">
+                            <div class="topbar-right">
+                                <div class="element hidden-xs hidden-sm">
+                                    <a href="#"><img src="~/template/web/img/icon-phone.png" alt=""><span></span></a>
+                                </div>
+                                <div class="element element-leaguage">
+                                    <a id="label2" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="~/images/logo/iconvn.png" style="height:19px;width:19px">
+                                        Tiếng Việt
+                                        <span class="ion-ios-arrow-down f-10 e-arrow"></span>
+                                    </a>
+                                </div>
+                                @if (Session["TenCus"] != null)
+                                {
+                                    <div class="element element-currency">
+                                        <a id="label3" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="label5">
+                                                <span> @Session["TenCus"]</span>
+                                                <span class="ion-ios-arrow-down f-10 e-arrow"> </span>
+                                            </a>
+
+                                        </a>
+                                        <div class="dropdown-menu dropdown-cart">
+                                            <ul class="mini-products-list">
+                                                <li class="item-cart">
+                                                    <div class="product-img-wrap">
+                                                        <a href="#"><img src="img/cart1.jpg" alt="" class="img-reponsive"></a>
+                                                    </div>
+                                                    <div class="product-details">
+                                                        <div class="inner-left" style="overflow: hidden; text-overflow: ellipsis; ">
+                                                            @Session["TenCus"] <br />
+                                                            Email : @Session["EmailCus"]
+                                                            SĐT : @Session["SDT"]
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="item-cart">
+                                                    <a href="@Url.Action("ChangePass","Account",new { id = @Convert.ToInt32(Session["MaKH"])})">Đổi mật khẩu</a>
+                                                </li>
+                                            </ul>
+                                            <div class="bottom-cart">
+                                                <div class="cart-price">
+                                                </div>
+                                                <div class="button-cart">
+                                                    <a href="@Url.Action("ProfileAccount","Account",new { id = @Convert.ToInt32(Session["MaKH"])})" class="cart-btn e-checkout btn-gradient">Tài khoản</a>
+                                                    <a href="@Url.Action("CusLogout","Account")" class="cart-btn btn-viewcart">Đăng xuất</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="container container-240">
+                    <div class="row flex">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 v-center header-logo">
+                            <a href="@Url.Action("Index","Home")"><img src="~/images/logo/LOGO3.png" style="height:110px" alt="" class="img-reponsive"></a>
+                        </div>
+                        <!-- search-->
+                        @Html.Action("_SearchParital", "Home")
+                        <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6 v-center header-sub">
+                            <div class="right-panel">
+                                <div class="header-sub-element hidden-xs hidden-sm">
+                                    <div class="sub-left">
+                                        <img src="~/template/web/img/icon-call.png" alt="">
+                                    </div>
+                                    <div class="sub-right">
+                                        <span>Liên hệ chúng tôi</span>
+                                        <div class="phone">(+84) 123 456 789 </div>
+                                    </div>
+                                </div>
+                                <div class="header-sub-element row">
+                                    <a href="#"><img src="~/template/web/img/icon-heart.png" alt=""></a>
+                                    @if (Session["TenCus"] == null)
+                                    {
+                                        <a class="hidden-xs hidden-sm" href="@Url.Action("CusLogin","Account")"><img src="~/template/web/img/icon-user.png" alt=""></a>
+                                    }
+                                    @* else
+                                        {
+                                            <div class="cart">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="label5">
+                                                    <span style="font-size:14.5px;"> @Session["TenCus"] <span class="fa fa-caret-down"></span></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-cart">
+                                                    <ul class="mini-products-list">
+                                                        <li class="item-cart">
+                                                            <div class="product-img-wrap">
+                                                                <a href="#"><img src="img/cart1.jpg" alt="" class="img-reponsive"></a>
+                                                            </div>
+                                                            <div class="product-details">
+                                                                <div class="inner-left">
+                                                                    <div class="product-name"><a href="#">@Session["TenCus"] </a></div>
+                                                                    <div class="product-name"><a href="#">SĐT : @Session["SDT"] </a></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="bottom-cart">
+                                                        <div class="cart-price">
+                                                        </div>
+                                                        <div class="button-cart">
+                                                            <a href="@Url.Action("CusLogout","Account")" class="cart-btn e-checkout btn-gradient">Logout</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }*@
+                                    @Html.Action("GiohangPartial", "ProdOrder")
+                                    <a href="#" class="hidden-md hidden-lg icon-pushmenu js-push-menu">
+                                        <i class="fa fa-bars f-15"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom hidden-xs hidden-sm">
+                <div class="container container-240">
+                    <div class="row flex lr2">
+                        <div class="col-lg-3 widget-verticalmenu">
+                            <div class="navbar-vertical">
+                                <button class="navbar-toggles navbar-drop js-vertical-menu"><span>Danh Mục</span></button>
+                            </div>
+                            <div class="vertical-wrapper">
+                                <ul class="vertical-group">
+                                    @Html.Action("Menu", "Home")
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 widget-left">
+                            <div class="flex lr e-border">
+                                <nav class="main-menu flex align-center">
+                                    <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav js-menubar">
+                                            <li class="level1 active hassub">
+                                                <a href="@Url.Action("Index","Home")">Trang Chủ</a>
+                                                <span class="plus js-plus-icon"></span>
+                                            </li>
+                                            <li class="level1 dropdown hassub">
+                                                <a href="@Url.Action("ShopFull","Shop")">Cửa Hàng</a>
+                                                <span class="plus js-plus-icon"></span>
+                                            </li>
+                                            <li class="level1 active dropdown">
+                                                <a href="@Url.Action("Contact","Home")">Liên Hệ</a>
+                                            </li>
+                                            <li class="level1 active dropdown">
+                                                <a href="@Url.Action("Post","Post")">Tin Công Nghệ<span class="h-ribbon h-pos e-green">mới</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                                <div class="header-bottom-right hidden-xs hidden-sm">
+                                    <img src="~/template/web/img/icon-ship.png" alt="" class="img-reponsive">
+                                    <span>Miễn phí giao hàng</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Body -->
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <!-- footer -->
+        <footer>
+            <div class="f-top">
+                <div class="container container-240">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                            <div class="footer-block footer-about">
+
+                                <h3 class="footer-block-title">Thông tin cửa hàng</h3>
+                                <ul class="footer-block-content">
+
+                                    <li class="address">
+                                        <span>475A Điện Biên Phủ, Phường 25, Bình Thạnh, Thành phố Hồ Chí Minh</span>
+                                    </li>
+                                    <li class="phone">
+                                        <span>(+123) 456 789 - (+123) 666 888</span>
+                                    </li>
+                                    <li class="email">
+                                        <span>Contact@hypergear.com</span>
+                                    </li>
+                                    <li class="time">
+                                        <span>Thời gian làm việc: 08:00 – 22:00 | T2 – CN</span>
+                                    </li>
+                                </ul>
+                                <div class="footer-social social">
+                                    <h3 class="footer-block-title">Theo dõi chúng tôi</h3>
+                                    <a href="#" class="fa fa-facebook"></a>
+                                    <a href="#" class="fa fa-instagram"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                            <div class="footer-block">
+                                <div class="footer-block-phone">
+                                    <h3 class="footer-block-title">Thông tin liên hệ</h3>
+                                    <p class="phone-desc">Cuộc gọi miễn phí</p>
+                                    <p class="phone-light">(+84) 123 666 888</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                            <div class="footer-block">
+                                <h3 class="footer-block-title">Dịch vụ khách hàng</h3>
+                                <ul class="footer-block-content">
+                                    @if (Session["TenCus"] != null)
+                                    {
+                                        <li><a href="@Url.Action("ProfileAccount", "Account", new { id = @Convert.ToInt32(Session["MaKH"]) })">Tài Khoản</a></li>
+                                        <li><a href="@Url.Action("TrackOrder", "Home", new { id = @Convert.ToInt32(Session["MaKH"]) })">Theo dõi đơn hàng</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("CusLogin", "Account", new { id = @Convert.ToInt32(Session["MaKH"]) })">Tài Khoản</a></li>
+                                        <li><a href="@Url.Action("CusLogin", "Account", new { id = @Convert.ToInt32(Session["MaKH"]) })">Theo dõi đơn hàng</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                            <div class="f-logo">
+                                <a href="@Url.Action("Index")"><img src="~/images/logo/LOGO3.png" alt="" class="img-reponsive"></a>
+                            </div>
+                            <div class="fb-page" data-href="https://www.facebook.com/HYPER-GEAR-691829225023918" data-tabs="timeline" data-width="300" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/HYPER-GEAR-691829225023918" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/HYPER-GEAR-691829225023918">HYPER GEAR</a></blockquote></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f-bottom">
+                <div class="container container-240">
+                    <div class="row flex lr">
+                        <div class="col-xs-6 f-copyright"><span>© 2021 HyperGear. All rights reserved.</span></div>
+                        <div class="col-xs-6 f-payment hidden-xs">
+                            <a href="#"><img src="~/template/web/img/payment/mastercard.png" alt="" class="img-reponsive"></a>
+                            <a href="#"><img src="~/template/web/img/payment/paypal.png" alt="" class="img-reponsive"></a>
+                            <a href="#"><img src="~/template/web/img/payment/visa.png" alt="" class="img-reponsive"></a>
+                            <a href="#"><img src="~/template/web/img/payment/jcb.png" alt="" class="img-reponsive"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div style="display:none">
+        <span id="Message" class="d-none">@TempData["Message"]</span>
+        <span id="Warning" class="d-none">@TempData["Warning"]</span>
+        <span id="Error" class="d-none">@TempData["Error"]</span>
+    </div>
+
+
+    <script src="~/template/web/js/jquery.js"></script>
+    <script src="~/template/web/js/bootstrap.js"></script>
+    <script src="~/template/web/js/owl.carousel.min.js"></script>
+    <script src="~/template/web/js/slick.js"></script>
+    <script src="~/template/web/js/countdown.js"></script>
+    <script src="~/template/web/js/main.js"></script>
+    <!--toastr-->
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Content/Message.js"></script>
+</body>
+</html>

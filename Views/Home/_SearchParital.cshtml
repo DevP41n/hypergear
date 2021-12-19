@@ -1,0 +1,14 @@
+﻿<div class="col-lg-5 col-md-5 v-center header-search hidden-xs hidden-sm">
+    <form method="get" class="searchform ajax-search" action="@Url.Action("Search","Home")" role="search">
+        <input autocomplete="off" type="text" onblur="if (this.value=='') this.value = this.defaultValue" onfocus="if (this.value==this.defaultValue) this.value = ''" name="keyword" class="form-control" placeholder="Tìm kiếm...">       
+        <div class="search-panel">
+            
+        </div>
+        <span class="input-group-btn">
+            <button class="button_search" type="submit"><i class="ion-ios-search-strong"></i></button>
+        </span>
+    </form>
+    <div class="tags">
+    </div>
+</div>
+

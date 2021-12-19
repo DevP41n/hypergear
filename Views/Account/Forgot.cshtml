@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Forgot";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="container container-240">
+    <div class="myaccount trackorder">
+        <ul class="breadcrumb v3">
+            <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+            <li class="active">Quên Mật Khẩu</li>
+        </ul>
+        <div class="row flex pd">
+            <div class="account-element bd-7">
+                <div class="cmt-title text-center abs">
+                    <h1 class="page-title v6">Quên Mật Khẩu</h1>
+                </div>
+                <div class="page-content">
+                    <p>Hãy nhập email của bạn để nhận mật khẩu mới.</p>
+                    <form class="login-form" method="post" action="@Url.Action("SearchForgot","Account")">
+                        <div class="form-group">         
+                            <label>Email</label>
+                            <input type="email" id="email" class="form-control bdr" name="email" value="" placeholder="Nhập email.">
+                        </div>
+                        <div class="flex justify-center">
+                            <button type="submit" class="btn btn-submit btn-gradient">
+                                Gửi
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

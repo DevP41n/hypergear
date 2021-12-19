@@ -1,0 +1,69 @@
+﻿@model HyperGear.Models.KhachHang
+@using BotDetect.Web.Mvc;
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+      rel="stylesheet" type="text/css" />
+@{
+    MvcCaptcha regCaptcha = new MvcCaptcha("regCaptcha");
+}
+
+@{
+    ViewBag.Title = "CusRegister";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="container container-240">
+
+    <div class="myaccount">
+        <div class="row flex pd">
+
+            <div class="account-element bd-7" style="margin-left: auto;margin-right: auto">
+                <div class="cmt-title text-center abs">
+                    <h1 class="page-title v1">Đăng ký</h1>
+                </div>
+                <div class="page-content">
+                    <p>Tạo tài khoản của riêng bạn.</p>
+                    @using (Html.BeginForm("CusRegister", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label>Tài khoản<span class="f-red">*</span></label>
+                            @*<input type="Taikhoan" id="author2" class="form-control bdr" name="comment[author]" value="">*@
+
+                            @Html.TextBoxFor(m => m.Taikhoan, "", new { @class = "form-control bdr", @placeholder = "Tên tài khoản", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Taikhoan, "", new { @class = "badge badge-danger" })
+                            <label>Mật khẩu <span class="f-red">*</span></label>
+                            @Html.PasswordFor(m => m.Matkhau, new { @class = "form-control bdr", @placeholder = "Mật khẩu" })
+                            @Html.ValidationMessageFor(m => m.Matkhau, "", new { @class = "badge badge-danger" })
+                            <label>Nhập lại mật khẩu <span class="f-red">*</span></label>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control bdr", @placeholder = "Nhập lại mật khẩu" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "badge badge-danger" })
+                            <label>Email <span class="f-red">*</span></label>
+                            @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control bdr", @placeholder = "E-mail", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge badge-danger" })
+                            <label>Họ và tên <span class="f-red">*</span></label>
+                            @Html.TextBoxFor(m => m.HoTen, "", new { @class = "form-control bdr", @placeholder = "Họ Tên", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "badge badge-danger" })
+                            <label>Số điện thoại <span class="f-red">*</span></label>
+                            @Html.TextBoxFor(m => m.DienthoaiKH, "", new { @class = "form-control bdr", @placeholder = "Số điện thoại", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.DienthoaiKH, "", new { @class = "badge badge-danger" })
+                            <label>Mã<span class="f-red">*</span></label>
+                            @Html.Captcha(regCaptcha)
+                        <br />
+                            @Html.TextBox("CaptchaCode")
+                        </div>
+                        <div class="flex lr">
+                            <input type="submit" name="submit" class="btn btn-submit btn-gradient" value="Đăng ký" />
+                            @*<a>Nếu bạn có tài khoản rồi thì hãy? @Html.ActionLink("Đăng nhập", "CusLogin")</a>*@
+                            <span  style="font-size:15px">
+                                Nếu bạn có tài khoản rồi thì hãy?
+                                <a href="@Url.Action("CusLogin","Account")" style=" text-decoration: underline;font-weight:bold">Đăng nhập</a>.
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

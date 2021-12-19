@@ -1,0 +1,128 @@
+﻿@using HyperGear.Models
+@model List<Order>
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+
+<div class="main-content space1">
+    <div class="container container-240">
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+            <li class="active">Đặt Hàng</li>
+        </ul>
+        <form name="checkout" method="post" class="co" action="@Url.Action("DatHang","ProdOrder")">
+        @*<form name="checkout" method="post" class="co" action="@Url.Action("PaymentWithPaypal", "Payment")">*@
+            <div class="cart-box-container-ver2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="co-left bd-7">
+                            <div class="cmt-title text-center abs">
+                                <h1 class="page-title v1">Thông Tin</h1>
+                            </div>
+                            <div class="row form-customer">
+
+                                <div class="form-group col-md-12">
+                                    <label for="inputcompany" class=" control-label">Họ Tên<span class="f-red">*</span></label>
+                                    <input type="text" id="ten" name="ten" value="@(ViewBag.custom.HoTen)" class="form-control form-account">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputfname_2" class=" control-label">SĐT<span class="f-red">*</span></label>
+                                    <input type="text" id="sdt" name="sdt" value="@(ViewBag.custom.DienthoaiKH)" class="form-control form-account">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputlname" class=" control-label">EMAIL<span class="f-red">*</span></label>
+                                    <input type="text" id="email" name="email" value="@(ViewBag.custom.Email)" class="form-control form-account">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="inputcountry1" class=" control-label">Địa Chỉ<span class="f-red">*</span></label>
+                                    <input type="text" id="dc" name="dc" class="form-control form-account">
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <a class="btn btn-success " onclick="history.go(-1)" style="float:left;"><i class="fa fa-reply"></i><span class="bold"> Quay lại</span></a>
+                    </div>
+
+                    <!-- End contact-form -->
+                    <div class="col-md-4">
+                        <div class="cart-total bd-7">
+                            <div class="cmt-title text-center abs">
+                                <h1 class="page-title v3">Đơn Hàng</h1>
+                            </div>
+                            <div class="table-responsive">
+                                <div class="co-pd">
+                                    <p class="co-title">
+                                        <span class="co-price"></span>
+                                    </p>
+                                    <ul class="co-pd-list">
+                                        <li>
+                                            <div class="co-name" style="font-weight:bold;font-size:20px;">
+                                                Sản Phẩm
+                                            </div>
+                                            <div class="co-price" style="font-weight:bold;font-size:20px;">
+                                                Thành Tiền
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                    <br />
+                                    <br />
+                                    @foreach (var item in Model)
+                                    {
+                                        <ul class="co-pd-list">
+                                            <li class="clearfix">
+                                                <div class="co-name">
+                                                    @item.oTenSP  x @item.oSoluong
+                                                </div>
+                                                <div class="co-price">
+                                                    @Html.Raw(String.Format("{0:0,0}₫", @item.oThanhTien))
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        Session["SesTotal"] = item.oThanhTien;
+                                    }
+                                </div>
+                                <table class="shop_table">
+                                    <tbody>
+                                        <tr class="cart-shipping v2">
+                                            <th>Giao Hàng</th>
+                                            <td class="td">
+                                                <ul class="shipping">
+                                                    <li>
+                                                        <input type="radio" name="gender" value="Free" id="radio2" checked="checked">
+                                                        <label for="radio2">Miễn phí giao hàng</label>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="order-total v2">
+                                            <th style="font-size:18px">Tổng Tiền</th>
+                                            <th style="font-size:18px">@Html.Raw(String.Format("{0:0,0}₫", ViewBag.Tongtien))</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="cart-total-bottom">
+                                <input type="submit" class="btn-gradient btn-checkout btn-co-order" value="Xác Nhận Đặt Hàng"  style="width:70%"/>
+                            </div>
+                            <p style="text-align:center;color:#999999">(Thanh toán bằng tiền mặt)</p>
+                            <div class="sign-in-divider">
+                                <span>Hoặc</span>
+                            </div>
+                            <div class="cart-total-bottom pp-checkout">
+                                <a href="@Url.Action("ThanhToan","ProdOrder")"><img src="~/template/web/img/checkoutpp.jpg" alt="" class="img-responsive"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        @*<a href="@Url.Action("PaymentWithPaypal", "Payment")" class="btn btn-success">Payment >></a>*@
+    </div>
+</div>
+

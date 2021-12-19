@@ -1,0 +1,21 @@
+﻿@model IEnumerable<HyperGear.Models.DanhMuc>
+
+@foreach (var item in ViewBag.MainMenu)
+{
+    <li class="vertical-item level1 vertical-drop mega-parent">
+        <a href="@Url.Action("LstMenu", "Home", new { id= item.Slug})">@item.TenMn</a>
+        <div class="menu-level-1 dropdown-menu vertical-menu">
+            <ul class="vertical-menu1 text-center cate-item">
+
+                @foreach (var s in Model.Where(x => x.MaMn == item.MaMn))
+                {
+                    <li><a href="@Url.Action("LstDM", "Home", new { id= s.Slug})" style="font-weight:bold;"> @s.TenDM</a></li>
+                }
+            </ul>
+        </div>
+    </li>
+}
+
+
+
+

@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HyperGearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Created_by" Type="int" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Updated_by" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="ChiTietDonHang">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaDonHang" Type="int" Nullable="false" />
+    <Property Name="MaSP" Type="int" Nullable="false" />
+    <Property Name="Soluong" Type="int" />
+    <Property Name="Dongia" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="DanhMuc">
+    <Key>
+      <PropertyRef Name="MaDM" />
+    </Key>
+    <Property Name="MaDM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDM" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Slug" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Created_by" Type="int" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Updated_by" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="MaMn" Type="int" />
+  </EntityType>
+  <EntityType Name="DonDatHang">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+    </Key>
+    <Property Name="MaDonHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dathanhtoan" Type="bit" />
+    <Property Name="Tinhtranggiaohang" Type="int" />
+    <Property Name="Ngaydat" Type="datetime" />
+    <Property Name="Ngaygiao" Type="datetime" />
+    <Property Name="MaKH" Type="int" />
+    <Property Name="DeliveryName" Type="nvarchar(max)" />
+    <Property Name="DeliveryPhone" Type="nvarchar" MaxLength="11" />
+    <Property Name="DeliveryAdd" Type="nvarchar(max)" />
+    <Property Name="DeliveryEmail" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="MaFb" />
+    </Key>
+    <Property Name="MaFb" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="255" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="NoiDung" Type="ntext" />
+    <Property Name="Reply" Type="ntext" />
+    <Property Name="Status" Type="int" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="NgayNhan" Type="datetime" />
+    <Property Name="NgayGui" Type="datetime" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Taikhoan" Type="varchar" MaxLength="100" />
+    <Property Name="Matkhau" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="DiachiKH" Type="nvarchar" MaxLength="200" />
+    <Property Name="DienthoaiKH" Type="varchar" MaxLength="50" />
+    <Property Name="Ngaysinh" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LienHe">
+    <Key>
+      <PropertyRef Name="MaLH" />
+    </Key>
+    <Property Name="MaLH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenCH" Type="varchar" MaxLength="255" />
+    <Property Name="NoiDung" Type="ntext" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="11" />
+    <Property Name="DiaChi" Type="ntext" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Created_by" Type="int" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Updated_by" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MaMn" />
+    </Key>
+    <Property Name="MaMn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenMn" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Slug" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Created_by" Type="int" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Updated_by" Type="int" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Slug" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mota" Type="ntext" />
+    <Property Name="ChiTiet" Type="ntext" />
+    <Property Name="Anh" Type="nvarchar(max)" />
+    <Property Name="Ngaycapnhat" Type="datetime" />
+    <Property Name="Soluongton" Type="int" />
+    <Property Name="MaDM" Type="int" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Created_by" Type="nvarchar" MaxLength="255" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Updated_by" Type="nvarchar" MaxLength="255" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaTT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NoiDung" Type="ntext" Nullable="false" />
+    <Property Name="Anh" Type="nvarchar(max)" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Created_by" Type="nvarchar" MaxLength="255" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Updated_by" Type="nvarchar" MaxLength="255" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Slug" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DanhMuc">
+    <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DanhMuc">
+        <PropertyRef Name="MaDM" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaDM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Donhang">
+    <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="1" />
+    <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonDatHang">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Khachhang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DonDatHang">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_MaMn">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="MaMn" />
+      </Principal>
+      <Dependent Role="DanhMuc">
+        <PropertyRef Name="MaMn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SP">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HyperGearModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LienHe" EntityType="Self.LienHe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DanhMuc" Association="Self.FK_DanhMuc">
+      <End Role="DanhMuc" EntitySet="DanhMuc" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Donhang" Association="Self.FK_Donhang">
+      <End Role="DonDatHang" EntitySet="DonDatHang" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Khachhang" Association="Self.FK_Khachhang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="DonDatHang" EntitySet="DonDatHang" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_MaMn" Association="Self.Fk_MaMn">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="DanhMuc" EntitySet="DanhMuc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SP" Association="Self.FK_SP">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

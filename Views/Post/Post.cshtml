@@ -1,0 +1,44 @@
+﻿@model IEnumerable<HyperGear.Models.TinTuc>
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="container container-240">
+    <div class="blog spc1">
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">Blog</li>
+        </ul>
+        <div class="blog-grid">
+            <h1 class="blog-heading text-center">TIN TỨC</h1>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12 blog-post-item">
+                        <div class="blog-img">
+                            <a href="@Url.Action("Details","Post", new { id = item.Slug})" class="hover-images"><img src="~/images/news/@item.Anh"  class="img-reponsive" style="width:380px; height:200px"></a>
+                            <div class="blog-post-date e-gradient abs">
+                                <span class="b-date">14</span>
+                                <span class="b-month">dec</span>
+                            </div>
+                        </div>
+                        <div class="blog-info">
+                            <h3 class="blog-post-title"><a href="@Url.Action("Details","Post", new { id = item.Slug})">@item.TieuDe</a></h3>                           
+                            <div class="blog-post-author">
+                                <div class="author">Viết bởi <span class="c-black">@item.Created_by</span></div>
+                                <div class="blog-post-comment"><span class="c-black"></span>2</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <ul class="pagination">
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model HyperGear.Models.TinTuc
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="container container-240" >
+    <div class="blog spc1" >
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+            <li class="active">Tin Tức</li>
+        </ul>
+        <div class="blog-single-post">
+            <div class="row">
+                <div class="blog-content  col-md-12  col-xs-12">
+                    <div class="blog-post-item v2" style="margin-left: 80px; margin-right: 80px;">
+                        <div class="blog-img">
+                            <a class="hover-images"><img src="~/images/news/@Model.Anh" alt="" class="img-reponsive"></a>
+                            <div class="blog-post-date e-gradient abs v2">
+                                <span class="b-date">14</span>
+                                <span class="b-month">dec</span>
+                            </div>
+                        </div>
+                        <div class="blog-info-bd">
+                            <div class="blog-info">
+                                <h3 class="blog-post-title v2">@Model.TieuDe</h3>
+                                <div class="blog-post-desc">
+                                    @Html.Raw(Model.NoiDung)
+                                </div>
+                            </div>
+                            <div class="blog-post-author v2">
+                                <div class="blog-post-tags">
+                                    <a>Viết bởi: <b>@Model.Created_by</b></a>
+                                </div>
+
+                                <div class="blog-post-social">
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </div>
+
+                            </div>
+                            @*// Comment*@
+                            <div class="fb-like" data-href="https://localhost:44313/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+                            @*//Like*@
+                            <div class="fb-comments" data-href="@Request.Url.GetLeftPart(UriPartial.Path)" data-width="100%" data-numposts="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

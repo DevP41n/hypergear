@@ -1,0 +1,40 @@
+﻿@using HyperGear.Models
+@model List<Order>
+<div class="cart">
+    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="label5">
+        <img src="~/template/web/img/icon-cart.png" alt="">
+        <span class="count cart-count">@ViewBag.Tongsoluong</span>
+    </a>
+    <div class="dropdown-menu dropdown-cart">
+        <ul class="mini-products-list">
+            @foreach (var item in Model)
+            {
+                <li class="item-cart">
+                    <div class="product-img-wrap">
+                        <a href="@Url.Action("Details","Home", new { id = item.oSlug})"><img src="~/images/product/@item.oAnh" alt="" class="img-reponsive"></a>
+                    </div>
+                    <div class="product-details">
+                        <div class="inner-left">
+                            <div class="product-name"><a href="@Url.Action("Details","Home", new { id = item.oSlug})">@item.oTenSP</a></div>
+                            <div class="product-price">
+                                @Html.Raw(String.Format("{0:0,0}₫", @item.oGia)) <span>( x @item.oSoluong)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="@Url.Action("XoaGioHang","ProdOrder", new { oMaSP = item.oMaSP, strURL = Request.Url.ToString()})" class="e-del"><i class="ion-ios-close-empty"></i></a>
+                </li>
+
+            }
+        </ul>
+        <div class="bottom-cart">
+            <div class="cart-price">
+                <span>Tổng Tiền</span>
+                <span class="price-total">@Html.Raw(String.Format("{0:0,0}₫", ViewBag.Tongtien))</span>
+            </div>
+            <div class="button-cart">
+                <a href="@Url.Action("GioHang","ProdOrder")" class="cart-btn btn-viewcart">Xem giỏ hàng</a>
+                <a href="@Url.Action("DatHang","ProdOrder")" class="cart-btn e-checkout btn-gradient">Đặt Hàng</a>
+            </div>
+        </div>
+    </div>
+</div>

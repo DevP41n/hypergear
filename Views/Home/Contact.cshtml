@@ -1,0 +1,63 @@
+﻿@model HyperGear.Models.Feedback
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+<div class="container container-240">
+    <div class="pd-banner v2">
+        <a class="image-bd effect_img2"><img src="~/template/web/img/pv.png" alt="" class="img-reponsive"></a>
+    </div>
+
+    <div class="e-contact">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7">
+                @foreach (var con in ViewBag.Cont)
+                {
+                    <div class="contact-info">
+                        <h1 class="contact-title spc">Thông Tin Liên Hệ</h1>
+                        
+                    </div>
+                    <div class="e-contact-address footer-about">
+                        <h3 class="contact-title v2">@con.TenCH</h3>
+                        <ul class="footer-block-content">
+                            <li class="address">
+                                <span>@con.DiaChi</span>
+                            </li>
+                            <li class="phone">
+                                <span>(+84) @con.DienThoai</span>
+                            </li>
+                            <li class="email">
+                                <span>@con.Email</span>
+                            </li>
+                            <li class="time">
+                                <span>Thời gian làm việc: 08:00 – 22:00 | T2 – CN</span>
+                            </li>
+                        </ul>
+                        @Html.Raw(con.NoiDung)
+                    </div>
+                }
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-5 pdl">
+                <h1 class="contact-title spc">Ý kiến và phản hồi</h1>
+                @using (Html.BeginForm("Contact", "Home"))
+                {
+                    @Html.AntiForgeryToken();
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control bdr", placeholder = "Họ tên *" } })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control bdr", placeholder = "Email *" } })
+                        @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control bdr", placeholder = "Tiêu Đề *" } })
+                        @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control bdr3", placeholder = "Nội Dung *" }, rows = "7" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-submit btn-gradient">
+                            Gửi
+                        </button>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="031c68c9eca54370bf526fabcffd797c" Name="Diagram1">
+        <EntityTypeShape EntityType="HyperGearModel.Admin" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.DanhMuc" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.DonDatHang" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.KhachHang" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.LienHe" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.SanPham" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HyperGearModel.TinTuc" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="HyperGearModel.FK_Donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="HyperGearModel.FK_SP" ManuallyRouted="false" />
+        <AssociationConnector Association="HyperGearModel.FK_DanhMuc" ManuallyRouted="false" />
+        <AssociationConnector Association="HyperGearModel.FK_Khachhang" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HyperGearModel.Menu" Width="1.5" PointX="1.75" PointY="10" />
+        <AssociationConnector Association="HyperGearModel.Fk_MaMn" />
+        <EntityTypeShape EntityType="HyperGearModel.Feedback" Width="1.5" PointX="8.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,131 @@
+﻿@using HyperGear.Models
+@model List<Order>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/web/_LayoutWeb.cshtml";
+}
+
+
+
+<div class="container container-240">
+
+    <div class="checkout">
+        <ul class="breadcrumb v3">
+            <li><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
+            <li class="active">Đơn Hàng</li>
+        </ul>
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="shopping-cart bd-7">
+                    <div class="cmt-title text-center abs">
+                        <h1 class="page-title v2">Giỏ Hàng</h1>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table cart-table">
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr class="item_cart">
+                                        <td class="product-name flex align-center">
+                                            <a href="@Url.Action("XoaGioHang","ProdOrder", new { oMaSP = item.oMaSP, @strURL = Request.Url.ToString() })" class="btn-del"><i class="ion-ios-close-empty"></i></a>
+                                            <div class="product-img">
+                                                <img src="~/images/product/@item.oAnh" alt="Futurelife">
+                                            </div>
+                                            <div class="product-info">
+                                                <a href="@Url.Action("Details","Home", new { id = item.oSlug})" title="">@item.oTenSP</a>
+                                            </div>
+                                        </td>
+                                        @using (Html.BeginForm("Tru", "ProdOrder", new { oMaSP = item.oMaSP, @class = "form_newsletter" }))
+                                        {
+                                            <td class="bcart-quantity single-product-detail" style="padding: 49px 5px;">
+                                                <input class="btn btn-update" type="submit" value="-" />
+                                            </td>
+                                        }
+                                        <td class="bcart-quantity single-product-detail" style="padding: 49px 5px;">
+                                            <div class="single-product-info">
+
+                                                <div class="e-quantity">
+
+                                                    <input type="number" id="txtSoluong" name="txtSoluong" value="@item.oSoluong" class="newsletter-input form-control" style="text-align:center" readonly>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        @using (Html.BeginForm("CapnhatGiohang", "ProdOrder", new { oMaSP = item.oMaSP, @class = "form_newsletter" }))
+                                        {
+                                            <td class="bcart-quantity single-product-detail" style="padding: 49px 10px;">
+                                                <input class="btn btn-update" type="submit" value="+" />
+                                            </td>
+                                        }
+                                        <td class="total-price">
+                                            <p class="price">@Html.Raw(String.Format("{0:0,0}₫", @item.oGia))</p>
+                                        </td>
+                                        @*<td class="total-price">
+                                                <input class="btn btn-update" type="submit" value="Cập Nhật" />
+                                            </td>*@
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                        <a href="@Url.Action("XoatatcaGiohang","ProdOrder")" class="btn btn-default" style="float:right;margin-right:20px">
+                            <i class="fa fa-ban"></i>
+                            <span class="bold">Xóa giỏ hàng</span>
+                        </a>
+                    </div>
+                    <br />
+                </div>
+                <br />
+                <a class="btn btn-success " onclick="history.go(-1)" style="float:left;">
+                    <i class="fa fa-reply"></i>
+                    <span class="bold">Tiếp tục mua hàng</span>
+                </a>
+            </div>
+
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="cart-total bd-7">
+                    <div class="cmt-title text-center abs">
+                        <h1 class="page-title v3">Đơn Hàng</h1>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="shop_table">
+                            <tbody>
+                                <tr class="cart-shipping">
+                                    <th>Giao hàng</th>
+                                    <td class="td">
+                                        <ul class="shipping">
+                                            <li>
+                                                <input type="radio" name="gender" value="Free" id="radio1" checked="checked">
+                                                <label for="radio2">Miễn Phí Giao Hàng</label>
+                                            </li>
+                                        </ul>
+                                        @*<a href="#" class="calcu">Calculate shipping</a>*@
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Tổng Tiền</th>
+                                    <td>@Html.Raw(String.Format("{0:0,0}₫", ViewBag.Tongtien))</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cart-total-bottom">
+                        <a href="@Url.Action("DatHang","ProdOrder")" class="btn-gradient btn-checkout">Đặt Hàng</a>
+
+                    </div>
+                    <p style="text-align:center;color:#999999">(Thanh toán bằng tiền mặt)</p>
+
+                    <div class="sign-in-divider">
+                        <span>Hoặc</span>
+                    </div>
+                    <div class="cart-total-bottom pp-checkout">
+                        <a href="@Url.Action("ThanhToan","ProdOrder")"><img src="~/template/web/img/checkoutpp.jpg" alt="" class="img-responsive"></a>
+                    </div>
+                    </br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
